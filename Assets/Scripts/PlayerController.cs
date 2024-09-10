@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
     public void Move(float move, bool crouch, bool jump)
     {
 
-        if (!crouch)
+        if (crouch)
         {
 
             if (Physics2D.OverlapCircle(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround))
