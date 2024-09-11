@@ -11,6 +11,7 @@ public class PlayerGeneral : MonoBehaviour
     public PlayerController playerController;
     public GameObject umbrella;
     public UIManager ui;
+    public LevelManager levelManager;
 
     public float runSpeed = 40f;
 
@@ -53,6 +54,11 @@ public class PlayerGeneral : MonoBehaviour
         } else if (Input.GetButtonUp("Umbrella")) {
             umbrella.SetActive(false);
             canJump = true;
+        }
+
+        if (Input.GetButtonDown("Pause"))
+        {
+            levelManager.LoadScene("Pause");
         }
     }
 

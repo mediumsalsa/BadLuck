@@ -7,6 +7,7 @@ TagManager:
   - Brick
   - Umbrella
   - Ground
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX
