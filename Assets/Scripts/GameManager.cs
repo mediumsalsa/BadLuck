@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     }
 
+    //Spawns the player at the set spawnpoint
     public void PlayerSpawn()
     {
         spawnPoint = GameObject.FindWithTag("SpawnPoint");

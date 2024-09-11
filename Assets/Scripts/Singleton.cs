@@ -6,6 +6,7 @@ public class Singleton : MonoBehaviour
 {
     static Singleton instance;
 
+    //Destroys duplicate objects
     public void Start()
     {
         if (instance != null)

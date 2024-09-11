@@ -30,15 +30,30 @@ public class PlayerGeneral : MonoBehaviour
       badLuckScore = 0;
     }
 
+    public void PlayerDies()
+    {
+        badLuckScore = 0;
+        levelManager.LoadScene("GameOver");
+    }
+
+
     void Update()
     {
+        //Player Loses
+        if (badLuckScore >= badLuckLimit)
+        {
+            PlayerDies();
+        }
+
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
+        //Player Jumps
         if (Input.GetButtonDown("Jump") && canJump == true)
         {
             jump = true;
         }
 
+        //Player crouches
         if (Input.GetButtonDown("Crouch"))
         {
             crouch = true;
@@ -46,6 +61,7 @@ public class PlayerGeneral : MonoBehaviour
             crouch = true;
         }
 
+        //Brings out the umbrella
         if (Input.GetButtonDown("Umbrella"))
         {
             umbrella.SetActive(true);
@@ -56,22 +72,16 @@ public class PlayerGeneral : MonoBehaviour
             canJump = true;
         }
 
+        //Pauses Game
         if (Input.GetButtonDown("Pause"))
         {
             levelManager.LoadScene("Pause");
         }
     }
 
-    private void LateUpdate()
-    {
-        if (badLuckScore >= badLuckLimit)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-    }
-
     private void FixedUpdate()
     {
+        //Moves Player
         playerController.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
         jump = false;
     }
