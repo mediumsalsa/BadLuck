@@ -2353,7 +2353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3292130120018259674, guid: 5d9e773fd0135bb4a8642af67d5cf59c, type: 3}
       propertyPath: umbrellaGravityDecrease
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3659017395758689948, guid: 5d9e773fd0135bb4a8642af67d5cf59c, type: 3}
       propertyPath: m_LocalPosition.x

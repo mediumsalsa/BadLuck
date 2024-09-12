@@ -39,6 +39,7 @@ public class PlayerGeneral : MonoBehaviour
     {
         playerHealth -= damage;
         ui.UpdateHealthText();
+        ui.UpdateScore(0);
         if (playerHealth <= 0)
         {
             PlayerDies();

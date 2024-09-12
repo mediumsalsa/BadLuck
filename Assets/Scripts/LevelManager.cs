@@ -58,10 +58,12 @@ public class LevelManager : MonoBehaviour
             else if (levelName.StartsWith("Pause"))
             {
                 gameManager.gameState = GameManager.GameState.Paused;
+                Time.timeScale = 0;
             }
             //Resume
             else if (levelName.StartsWith("Resume"))
             {
+                Time.timeScale = 1;
                 //resumes back to gameplay
                 if (currentScene.StartsWith("Level"))
                 {

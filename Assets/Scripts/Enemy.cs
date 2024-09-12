@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
         //does something based on whats in front of the enemy
         if (hit.collider != null)
         {
-            if (hit.transform.tag == "Ground")
+            if (hit.transform.tag == "Ground" || hit.transform.tag == "Enemy")
             {
                 bIsGoingRight = !bIsGoingRight;
                 _mSpriteRenderer.flipX = bIsGoingRight;

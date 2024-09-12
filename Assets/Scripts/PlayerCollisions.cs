@@ -16,11 +16,19 @@ public class PlayerCollisions : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //kills player
         if (collision.gameObject.tag == "Brick")
         {
             Destroy(collision.gameObject);
             player.PlayerHit(1);
+        }
+        if (collision.gameObject.tag == "Enemy")
+        {
+            player.badLuckScore += 2;
+            player.PlayerHit(1);
+        }
+        if (collision.gameObject.tag == "InstantDeath")
+        {
+            player.PlayerHit(1000);
         }
     }
 

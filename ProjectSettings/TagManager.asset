@@ -8,6 +8,9 @@ TagManager:
   - Umbrella
   - Ground
   - SpawnPoint
+  - Enemy
+  - Stopper
+  - InstantDeath
   layers:
   - Default
   - TransparentFX
