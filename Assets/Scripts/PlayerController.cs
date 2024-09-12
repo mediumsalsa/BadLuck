@@ -135,13 +135,13 @@ public class PlayerController : MonoBehaviour
             if (move > 0 && !m_FacingRight)
             {
 
-                //Flip();
+                Flip();
             }
 
             else if (move < 0 && m_FacingRight)
             {
 
-                //Flip();
+                Flip();
             }
         }
 
