@@ -2213,6 +2213,10 @@ PrefabInstance:
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 1746883419}
+    - target: {fileID: 3292130120018259674, guid: 5d9e773fd0135bb4a8642af67d5cf59c, type: 3}
+      propertyPath: umbrellaGravityDecrease
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3659017395758689948, guid: 5d9e773fd0135bb4a8642af67d5cf59c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.1089058
@@ -2256,6 +2260,14 @@ PrefabInstance:
     - target: {fileID: 5779485123406902490, guid: 5d9e773fd0135bb4a8642af67d5cf59c, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 9200902458349697099, guid: 5d9e773fd0135bb4a8642af67d5cf59c, type: 3}
+      propertyPath: brickCanSpawn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9200902458349697099, guid: 5d9e773fd0135bb4a8642af67d5cf59c, type: 3}
+      propertyPath: brickSpawnRange
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

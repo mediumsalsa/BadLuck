@@ -8,6 +8,8 @@ public class BrickSpawner : MonoBehaviour
     public int brickSpawnRate;
     private int tillNextBrick;
     private Vector2 brickSpawn;
+    public int brickSpawnRange;
+    public bool brickCanSpawn;
 
     private void Start()
     {
@@ -16,14 +18,17 @@ public class BrickSpawner : MonoBehaviour
 
     private void Update()
     {
-        int brickRandomiser = Random.Range(-10, 10);
+        int brickRandomiser = Random.Range(-brickSpawnRange, brickSpawnRange);
 
         brickSpawn = gameObject.transform.position;
 
         if (tillNextBrick >= brickSpawnRate)
         {
             tillNextBrick = 0;
-            Instantiate(brick, new Vector2(brickSpawn.x + brickRandomiser, brickSpawn.y), Quaternion.identity);
+            if (brickCanSpawn)
+            {
+                Instantiate(brick, new Vector2(brickSpawn.x + brickRandomiser, brickSpawn.y), Quaternion.identity);
+            }
 
         } else {
             tillNextBrick++;

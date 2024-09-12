@@ -12,8 +12,11 @@ public class PlayerGeneral : MonoBehaviour
     public GameObject umbrella;
     public UIManager ui;
     public LevelManager levelManager;
+    Rigidbody2D playerBody;
 
     public float runSpeed = 40f;
+
+    public int umbrellaGravityDecrease;
 
     float horizontalMove = 0f;
     bool jump = false;
@@ -27,6 +30,7 @@ public class PlayerGeneral : MonoBehaviour
 
     private void Start()
     {
+      playerBody = GetComponent<Rigidbody2D>();
       badLuckScore = 0;
     }
 
@@ -65,10 +69,12 @@ public class PlayerGeneral : MonoBehaviour
         if (Input.GetButtonDown("Umbrella"))
         {
             umbrella.SetActive(true);
+            playerBody.gravityScale /= umbrellaGravityDecrease;
             canJump = false;
             ui.UpdateScore(1);
         } else if (Input.GetButtonUp("Umbrella")) {
             umbrella.SetActive(false);
+            playerBody.gravityScale *= umbrellaGravityDecrease;
             canJump = true;
         }
 
