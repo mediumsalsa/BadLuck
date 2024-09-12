@@ -16,6 +16,8 @@ public class LevelManager : MonoBehaviour
         //Resets the badLuckScore every time a scene loads
         playerGeneral.badLuckScore = 0;
         ui.UpdateScore(0);
+        playerGeneral.playerHealth = playerGeneral.playerHealthMax;
+        ui.UpdateHealthText();
 
         SceneManager.sceneLoaded += OnSceneLoaded;
 

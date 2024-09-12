@@ -14,8 +14,9 @@ public class PlayerGeneral : MonoBehaviour
     public LevelManager levelManager;
     Rigidbody2D playerBody;
 
+    public int playerHealthMax;
+    [HideInInspector]public int playerHealth;
     public float runSpeed = 40f;
-
     public int umbrellaGravityDecrease;
 
     float horizontalMove = 0f;
@@ -23,15 +24,25 @@ public class PlayerGeneral : MonoBehaviour
     bool canJump = true;
     bool crouch = false;
 
-
     [HideInInspector] public int badLuckScore;
     public int badLuckLimit;
 
 
     private void Start()
     {
-      playerBody = GetComponent<Rigidbody2D>();
-      badLuckScore = 0;
+        playerBody = GetComponent<Rigidbody2D>();
+        playerHealth = playerHealthMax;
+        badLuckScore = 0;
+    }
+
+    public void PlayerHit(int damage)
+    {
+        playerHealth -= damage;
+        ui.UpdateHealthText();
+        if (playerHealth <= 0)
+        {
+            PlayerDies();
+        }
     }
 
     public void PlayerDies()

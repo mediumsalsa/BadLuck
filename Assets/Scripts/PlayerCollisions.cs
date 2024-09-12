@@ -20,7 +20,7 @@ public class PlayerCollisions : MonoBehaviour
         if (collision.gameObject.tag == "Brick")
         {
             Destroy(collision.gameObject);
-            player.PlayerDies();
+            player.PlayerHit(1);
         }
     }
 

@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     public PlayerGeneral player;
 
     [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI healthText;
 
     public GameObject oMainMenu;
     public GameObject oGameplay;
@@ -19,12 +20,18 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         UpdateScore(0);
+        UpdateHealthText();
+    }
+
+    public void UpdateHealthText()
+    {
+        healthText.text = "Health: " + player.playerHealth;
     }
 
     public void UpdateScore(int points)
     {
         player.badLuckScore += points;
-        scoreText.text = "Bad Luck Meter: " + player.badLuckScore;
+        scoreText.text = "Bad Luck Meter: " + player.badLuckScore + "/" + player.badLuckLimit;
     }
 
     public void UI_MainMenu()
