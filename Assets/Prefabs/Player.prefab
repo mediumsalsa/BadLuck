@@ -158,7 +158,7 @@ Transform:
   m_GameObject: {fileID: 701129504447838606}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.58, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -355,6 +355,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   brick: {fileID: 759623212368656433, guid: 73d37c95e0db7c949a6cdfae196ec559, type: 3}
   brickSpawnRate: 1000
+  brickSpawnRange: 0
+  brickCanSpawn: 0
 --- !u!1 &5779485123406902490
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,6 +568,7 @@ MonoBehaviour:
   ui: {fileID: 0}
   levelManager: {fileID: 0}
   runSpeed: 70
+  umbrellaGravityDecrease: 0
   badLuckScore: 0
   badLuckLimit: 10
 --- !u!114 &6454309952872529313

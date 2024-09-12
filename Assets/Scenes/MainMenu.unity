@@ -2263,7 +2263,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9200902458349697099, guid: 5d9e773fd0135bb4a8642af67d5cf59c, type: 3}
       propertyPath: brickCanSpawn
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9200902458349697099, guid: 5d9e773fd0135bb4a8642af67d5cf59c, type: 3}
       propertyPath: brickSpawnRange
