@@ -9,6 +9,7 @@ public class PlayerGeneral : MonoBehaviour
 {
 
     public PlayerController playerController;
+    public Animator animator;
     public GameObject umbrella;
     public UIManager ui;
     public LevelManager levelManager;
@@ -63,10 +64,13 @@ public class PlayerGeneral : MonoBehaviour
 
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+
         //Player Jumps
         if (Input.GetButtonDown("Jump") && canJump == true)
         {
             jump = true;
+            animator.SetBool("isJumping", true);
         }
 
         //Player crouches
@@ -95,6 +99,11 @@ public class PlayerGeneral : MonoBehaviour
         {
             levelManager.LoadScene("Pause");
         }
+    }
+
+    public void OnLanding()
+    {
+        animator.SetBool("isJumping", false);
     }
 
     private void FixedUpdate()

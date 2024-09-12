@@ -43,11 +43,12 @@ public class PlayerController : MonoBehaviour
             OnCrouchEvent = new BoolEvent();
     }
 
+    private bool isLandingDelayed = false;
+
     private void FixedUpdate()
     {
         bool wasGrounded = m_Grounded;
         m_Grounded = false;
-
 
         Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
         for (int i = 0; i < colliders.Length; i++)
@@ -55,11 +56,30 @@ public class PlayerController : MonoBehaviour
             if (colliders[i].gameObject != gameObject)
             {
                 m_Grounded = true;
-                if (!wasGrounded)
-                    OnLandEvent.Invoke();
+
+                // If the player was airborne and just landed, start the delay coroutine
+                if (!wasGrounded && !isLandingDelayed)
+                {
+                    StartCoroutine(InvokeLandEventWithDelay());
+                }
             }
         }
     }
+
+    private IEnumerator InvokeLandEventWithDelay()
+    {
+        isLandingDelayed = true;
+        yield return new WaitForSeconds(0.05f);
+
+        if (m_Grounded)
+        {
+            OnLandEvent.Invoke();
+        }
+
+        isLandingDelayed = false;
+    }
+
+
 
 
     public void Move(float move, bool crouch, bool jump)
