@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - Stopper
   - InstantDeath
+  - Sword
   layers:
   - Default
   - TransparentFX

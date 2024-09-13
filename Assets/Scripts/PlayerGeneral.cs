@@ -11,6 +11,7 @@ public class PlayerGeneral : MonoBehaviour
     public PlayerController playerController;
     public Animator animator;
     public GameObject umbrella;
+    public GameObject swordHitBox;
     public UIManager ui;
     public LevelManager levelManager;
     Rigidbody2D playerBody;
@@ -25,6 +26,10 @@ public class PlayerGeneral : MonoBehaviour
     bool canJump = true;
     bool crouch = false;
 
+    public int swordCoolDown;
+    public float SwordSwingTime;
+    private int tillNextSwing;
+
     [HideInInspector] public int badLuckScore;
     public int badLuckLimit;
 
@@ -34,6 +39,7 @@ public class PlayerGeneral : MonoBehaviour
         playerBody = GetComponent<Rigidbody2D>();
         playerHealth = playerHealthMax;
         badLuckScore = 0;
+        tillNextSwing = 0;
     }
 
     public void PlayerHit(int damage)
@@ -94,12 +100,35 @@ public class PlayerGeneral : MonoBehaviour
             canJump = true;
         }
 
+        //Brings out the attack hitbox
+        if (tillNextSwing >= swordCoolDown)
+        {
+            
+            if (Input.GetButtonDown("Sword"))
+            {
+                Debug.Log("Sword Button Pressed");
+                swordHitBox.SetActive(true);
+                canJump = false;
+                tillNextSwing = 0;
+                StartCoroutine(PutSwordAway());
+            }
+        }
+        tillNextSwing++;
+
         //Pauses Game
         if (Input.GetButtonDown("Pause"))
         {
             levelManager.LoadScene("Pause");
         }
     }
+
+    public IEnumerator PutSwordAway()
+    {
+        yield return new WaitForSeconds(SwordSwingTime);
+        swordHitBox.SetActive(false);
+        canJump = true;
+    }
+
 
     public void OnLanding()
     {
