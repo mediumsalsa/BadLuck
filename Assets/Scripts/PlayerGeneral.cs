@@ -110,6 +110,8 @@ public class PlayerGeneral : MonoBehaviour
                 swordHitBox.SetActive(true);
                 canJump = false;
                 tillNextSwing = 0;
+                
+                //animator.SetBool("isMissing", true);
                 StartCoroutine(PutSwordAway());
             }
         }
@@ -125,9 +127,46 @@ public class PlayerGeneral : MonoBehaviour
     public IEnumerator PutSwordAway()
     {
         yield return new WaitForSeconds(SwordSwingTime);
+
+        // Check if the sword hitbox hits any enemies
+        Collider2D[] hits = Physics2D.OverlapBoxAll(swordHitBox.transform.position, swordHitBox.GetComponent<BoxCollider2D>().size, 0);
+        bool hitEnemy = false;
+
+        foreach (Collider2D hit in hits)
+        {
+            if (hit.CompareTag("Enemy"))
+            {
+                hitEnemy = true;
+                break;
+            }
+        }
+
+        if (hitEnemy)
+        {
+            animator.SetBool("isHitting", true);
+            animator.SetBool("isMissing", false);
+        }
+        else
+        {
+            animator.SetBool("isHitting", false);
+            animator.SetBool("isMissing", true);
+        }
+
+        // Start coroutine to reset both parameters after 0.5 seconds
+        StartCoroutine(ResetAttackAnimations());
+
         swordHitBox.SetActive(false);
         canJump = true;
     }
+
+    // Coroutine to reset attack animations
+    private IEnumerator ResetAttackAnimations()
+    {
+        yield return new WaitForSeconds(0.1f);
+        animator.SetBool("isHitting", false);
+        animator.SetBool("isMissing", false);
+    }
+
 
 
     public void OnLanding()
