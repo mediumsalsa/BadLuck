@@ -545,7 +545,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.16875765, y: 0.06417632}
+  m_Offset: {x: 0.0653052, y: -0.14545083}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -556,7 +556,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.3375154, y: 0.87164736}
+  m_Size: {x: 1.1306102, y: 1.2909017}
   m_EdgeRadius: 0
 --- !u!212 &242446472
 SpriteRenderer:
@@ -7483,7 +7483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brick: {fileID: 759623212368656433, guid: 73d37c95e0db7c949a6cdfae196ec559, type: 3}
-  brickSpawnRate: 1000
+  brickSpawnRate: 1.5
   brickSpawnRange: 10
   brickCanSpawn: 1
 --- !u!1660057539 &9223372036854775807

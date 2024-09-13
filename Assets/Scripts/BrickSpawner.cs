@@ -5,35 +5,27 @@ using UnityEngine;
 public class BrickSpawner : MonoBehaviour
 {
     public GameObject brick;
-    public int brickSpawnRate;
-    private int tillNextBrick;
-    private Vector2 brickSpawn;
+    public float brickSpawnRate;
+    private float tillNextBrick;
     public int brickSpawnRange;
     public bool brickCanSpawn;
 
-    private void Start()
-    {
-        tillNextBrick = 0;
-    }
-
     private void Update()
     {
-        int brickRandomiser = Random.Range(-brickSpawnRange, brickSpawnRange);
+        tillNextBrick += Time.deltaTime;
 
-        brickSpawn = gameObject.transform.position;
+        Vector2 brickSpawn = transform.position;
+        int brickRandomiser = Random.Range(-Mathf.RoundToInt(brickSpawnRange), Mathf.RoundToInt(brickSpawnRange));
 
         if (tillNextBrick >= brickSpawnRate)
         {
-            tillNextBrick = 0;
+            tillNextBrick = 0f;
+
             if (brickCanSpawn)
             {
                 Instantiate(brick, new Vector2(brickSpawn.x + brickRandomiser, brickSpawn.y), Quaternion.identity);
             }
-
-        } else {
-            tillNextBrick++;
         }
-
     }
 
 }
