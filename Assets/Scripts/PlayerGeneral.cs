@@ -13,6 +13,7 @@ public class PlayerGeneral : MonoBehaviour
     public GameObject umbrella;
     public GameObject swordHitBox;
     public UIManager ui;
+    public AudioManager audio;
     public LevelManager levelManager;
     Rigidbody2D playerBody;
 
@@ -44,6 +45,7 @@ public class PlayerGeneral : MonoBehaviour
 
     public void PlayerHit(int damage)
     {
+        audio.PlaySFX(audio.playerHitSound);
         playerHealth -= damage;
         ui.UpdateHealthText();
         ui.UpdateScore(0);
@@ -56,6 +58,7 @@ public class PlayerGeneral : MonoBehaviour
     public void PlayerDies()
     {
         badLuckScore = 0;
+        audio.PlaySFX(audio.deathSound);
         levelManager.LoadScene("GameOver");
     }
 
@@ -75,6 +78,7 @@ public class PlayerGeneral : MonoBehaviour
         //Player Jumps
         if (Input.GetButtonDown("Jump") && canJump == true)
         {
+            audio.PlaySFX(audio.jumpSound);
             jump = true;
             animator.SetBool("isJumping", true);
         }
@@ -143,11 +147,13 @@ public class PlayerGeneral : MonoBehaviour
 
         if (hitEnemy)
         {
+            audio.PlaySFX(audio.hitSound);
             animator.SetBool("isHitting", true);
             animator.SetBool("isMissing", false);
         }
         else
         {
+            audio.PlaySFX(audio.attackSound);
             animator.SetBool("isHitting", false);
             animator.SetBool("isMissing", true);
         }
