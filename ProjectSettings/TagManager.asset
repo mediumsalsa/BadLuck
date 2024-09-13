@@ -12,6 +12,7 @@ TagManager:
   - Stopper
   - InstantDeath
   - Sword
+  - RabbitFoot
   layers:
   - Default
   - TransparentFX

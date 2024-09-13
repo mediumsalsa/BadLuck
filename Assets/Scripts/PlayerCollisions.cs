@@ -7,10 +7,21 @@ public class PlayerCollisions : MonoBehaviour
 {
 
     private PlayerGeneral player;
+    public LevelManager levelManager;
+    public AudioManager audio;
 
     private void Start()
     {
         player = FindObjectOfType<PlayerGeneral>();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "RabbitFoot")
+        {
+            audio.PlaySFX(audio.winSound);
+            levelManager.LoadScene("GameWin");
+        }
     }
 
 
@@ -23,7 +34,7 @@ public class PlayerCollisions : MonoBehaviour
         }
         if (collision.gameObject.tag == "Enemy")
         {
-            player.badLuckScore += 2;
+            player.badLuckScore += 3;
             player.PlayerHit(1);
         }
         if (collision.gameObject.tag == "InstantDeath")

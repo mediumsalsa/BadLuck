@@ -49,6 +49,11 @@ public class LevelManager : MonoBehaviour
                 SceneManager.LoadScene(levelName);
                 gameManager.gameState = GameManager.GameState.GameWin;
             }
+            //Player wins
+            else if (levelName.StartsWith("Quit"))
+            {
+                Application.Quit();
+            }
             //Player Loses
             else if (levelName.StartsWith("GameOver"))
             {

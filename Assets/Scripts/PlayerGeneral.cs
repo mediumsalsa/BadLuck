@@ -141,6 +141,7 @@ public class PlayerGeneral : MonoBehaviour
             if (hit.CompareTag("Enemy"))
             {
                 hitEnemy = true;
+                ui.UpdateScore(1);
                 audio.PlaySFX(audio.hitSound);  // Play hit sound
                 break;  // No need to check further
             }
@@ -174,6 +175,7 @@ public class PlayerGeneral : MonoBehaviour
     public void OnEnemyHit()
     {
         audio.PlaySFX(audio.hitSound);
+        ui.UpdateScore(1);
         animator.SetTrigger("Hit");
         animator.SetBool("isHitting", true);
         StartCoroutine(ResetHitAnimations());
