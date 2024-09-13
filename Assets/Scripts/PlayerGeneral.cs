@@ -141,38 +141,50 @@ public class PlayerGeneral : MonoBehaviour
             if (hit.CompareTag("Enemy"))
             {
                 hitEnemy = true;
-                break;
+                audio.PlaySFX(audio.hitSound);  // Play hit sound
+                break;  // No need to check further
             }
         }
 
-        if (hitEnemy)
+        if (!hitEnemy)
         {
-            audio.PlaySFX(audio.hitSound);
-            animator.SetBool("isHitting", true);
-            animator.SetBool("isMissing", false);
-        }
-        else
-        {
+            // Play miss sound only if no enemies were hit
             audio.PlaySFX(audio.attackSound);
-            animator.SetBool("isHitting", false);
-            animator.SetBool("isMissing", true);
+            animator.SetTrigger("Miss");
         }
 
-        // Start coroutine to reset both parameters after 0.5 seconds
-        StartCoroutine(ResetAttackAnimations());
+        // Ensure we only reset the Miss animation if it was set
+        StartCoroutine(ResetMissAnimations(hitEnemy));
 
         swordHitBox.SetActive(false);
         canJump = true;
     }
 
-    // Coroutine to reset attack animations
-    private IEnumerator ResetAttackAnimations()
+    private IEnumerator ResetMissAnimations(bool hitEnemy)
     {
-        yield return new WaitForSeconds(0.1f);
-        animator.SetBool("isHitting", false);
-        animator.SetBool("isMissing", false);
+        // Only reset Miss if no enemy was hit
+        if (!hitEnemy)
+        {
+            yield return new WaitForSeconds(0.1f);
+            animator.ResetTrigger("Miss");
+        }
     }
 
+
+    public void OnEnemyHit()
+    {
+        audio.PlaySFX(audio.hitSound);
+        animator.SetTrigger("Hit");
+        animator.SetBool("isHitting", true);
+        StartCoroutine(ResetHitAnimations());
+    }
+
+    private IEnumerator ResetHitAnimations()
+    {
+        yield return new WaitForSeconds(0.2f);
+        animator.ResetTrigger("Hit");
+        animator.SetBool("isHitting", false);
+    }
 
 
     public void OnLanding()

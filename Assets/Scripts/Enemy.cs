@@ -9,14 +9,14 @@ public class Enemy : MonoBehaviour
     public bool bIsGoingRight = true;
 
     private SpriteRenderer _mSpriteRenderer;
-
+    private GameObject player;
 
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
         _mSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         _mSpriteRenderer.flipX = bIsGoingRight;
     }
-
 
     void Update()
     {
@@ -43,7 +43,6 @@ public class Enemy : MonoBehaviour
             {
                 bIsGoingRight = !bIsGoingRight;
                 _mSpriteRenderer.flipX = bIsGoingRight;
-
             }
         }
     }
@@ -52,9 +51,14 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Sword")
         {
+            // Notify the player script about the hit
+            PlayerGeneral playerScript = player.GetComponent<PlayerGeneral>();
+            if (playerScript != null)
+            {
+                playerScript.OnEnemyHit();
+            }
+
             Destroy(gameObject);
         }
     }
-
-
 }
